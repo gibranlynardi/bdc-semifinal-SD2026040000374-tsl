@@ -1,0 +1,21 @@
+view,name,n,split_score,effective_clusters,top_cluster,top_share,n_parts,parts,split,majority_in_clusters
+catalogue filename name,Keyboard,233,0.193826,1.769521,9,0.875536,1,9:0.876,False,2 9
+catalogue filename name,Microwave,252,0.085624,1.286743,13,0.956349,1,13:0.956,False,13
+catalogue filename name,Mobile,150,0.060392,1.194611,3,0.966667,1,3:0.967,False,3 4 16
+catalogue filename name,Mouse,206,0.020849,1.063312,14,0.990291,1,14:0.990,False,14 17
+catalogue filename name,Player,237,0.092889,1.314565,5,0.953586,1,5:0.954,False,5
+catalogue filename name,Printer,275,0.082011,1.273128,10,0.956364,1,10:0.956,False,10
+catalogue filename name,Television,254,0.266581,2.192256,12,0.500000,2,12:0.500 6:0.484,True,6 7 12
+catalogue filename name,Washing_Machine,294,0.250061,2.088175,11,0.642857,2,11:0.643 15:0.340,True,11 15
+catalogue filename name,battery,214,0.163676,1.619201,8,0.827103,2,8:0.827 18:0.168,True,8 18
+catalogue filename name,pcb,217,0.019956,1.060519,1,0.990783,1,1:0.991,False,0 1
+confident name (catalogue + scraped vote),Keyboard,408,0.363179,2.913506,9,0.627451,2,9:0.627 2:0.265,True,2 9
+confident name (catalogue + scraped vote),Microwave,253,0.094053,1.319079,13,0.952569,1,13:0.953,False,13
+confident name (catalogue + scraped vote),Mobile,446,0.296215,2.392133,3,0.784753,1,3:0.785,False,3 4 16
+confident name (catalogue + scraped vote),Mouse,294,0.073434,1.241377,14,0.955782,1,14:0.956,False,14 17
+confident name (catalogue + scraped vote),Player,244,0.140588,1.512785,5,0.930328,1,5:0.930,False,5
+confident name (catalogue + scraped vote),Printer,299,0.176874,1.683366,10,0.882943,1,10:0.883,False,10
+confident name (catalogue + scraped vote),Television,465,0.434858,3.598124,6,0.445161,3,6:0.445 12:0.305 7:0.178,True,6 7 12
+confident name (catalogue + scraped vote),Washing_Machine,308,0.263301,2.171186,11,0.646104,2,11:0.646 15:0.328,True,11 15
+confident name (catalogue + scraped vote),battery,228,0.250581,2.091373,8,0.780702,2,8:0.781 18:0.158,True,8 18
+confident name (catalogue + scraped vote),pcb,457,0.185516,1.726749,1,0.796499,2,1:0.796 0:0.195,True,0 1

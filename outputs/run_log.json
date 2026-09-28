@@ -1,0 +1,66 @@
+{
+ "profile": "full",
+ "chosen": "raw__Leiden_r1.0",
+ "n_rows": 3607,
+ "versions": {
+  "python": "3.11.15",
+  "platform": "Linux-6.18.44-fc-v37-x86_64-with-glibc2.39",
+  "numpy": "2.4.4",
+  "pandas": "2.3.3",
+  "scipy": "1.17.1",
+  "scikit-learn": "1.8.0",
+  "scanpy": "1.11.5",
+  "anndata": "0.12.19",
+  "igraph": "1.0.0",
+  "leidenalg": "0.12.0",
+  "umap-learn": "0.5.12",
+  "pynndescent": "0.6.0",
+  "numba": "0.67.0",
+  "fa2-modified": "0.4",
+  "PyYAML": "6.0.3",
+  "tabulate": "0.10.0",
+  "OMP_NUM_THREADS": "1",
+  "OPENBLAS_NUM_THREADS": "1",
+  "MKL_NUM_THREADS": "1",
+  "NUMBA_NUM_THREADS": "1"
+ },
+ "inputs": {
+  "embeddings": {
+   "path": "/mnt/user-data/uploads/SD/work/results_embedding_2/emb_full_A144.npy",
+   "sha256": "9efcdce5c09091b70dc14518c501b72f42d19c00e3ad25a7e45d3b84c236dee8"
+  },
+  "index": {
+   "path": "/mnt/user-data/uploads/SD/work/results_embedding_2/emb_full_index.csv",
+   "sha256": "65fa1dacfc662ff59416f13ea79a63be13161aaadca99dbabcf88b13fddb3f9c"
+  }
+ },
+ "timings_s": {
+  "1_data": 0.29,
+  "2_candidates": 1209.58,
+  "2_candidates/raw__KMeans_k10": 35.42,
+  "2_candidates/raw__KMeans_k20": 46.57,
+  "2_candidates/raw__Leiden_r0.5": 22.18,
+  "2_candidates/raw__Leiden_r1.0": 8.41,
+  "2_candidates/raw__UMAP_HDBSCAN": 477.3,
+  "2_candidates/defl20__KMeans_k10": 65.94,
+  "2_candidates/defl20__KMeans_k20": 66.5,
+  "2_candidates/defl20__Leiden_r0.5": 8.38,
+  "2_candidates/defl20__Leiden_r1.0": 8.25,
+  "2_candidates/defl20__UMAP_HDBSCAN": 470.61,
+  "3_selection": 0.01,
+  "4_audit": 0.31,
+  "5_export": 85.68,
+  "total": 1296.0
+ },
+ "outputs_sha256": {
+  "clusters.csv": "1155f59e908e1c2b527b15449677a6902050fe6fa52811f713abf8323ad4784a",
+  "validity.csv": "00e8b806e3e4921361279b5d5cf33f567b225fb9378d8258a5a146c022909f85",
+  "choice.md": "e6d09d45b123e35f5a43a50853d3c55ba1ac5c9d676e48ffa031edcc9700042e",
+  "crosstab_catalogue.csv": "42147544341f4682313021f6627e3caddf68a59a026280412052b7910bd835e3",
+  "split_scores.csv": "40c44e8ef1631c14d41ba5042862ca309c969b8b92584eab8ab78f49532bd5da",
+  "orphans.csv": "0b44353e8a51fe5895664c1bf8e7623dd952ab33f090ee7f050f704b9f0783bf",
+  "stability.csv": "2e228ae5e2d5e1ff15e57f57ebbfca5d97ec10200f509f77d64a7bba89b8704c",
+  "stability_pairs.csv": "d916efb1e4b780b26bbca365db7cc321c334c44e9896a8f27e18a5472ff43847"
+ },
+ "n_clusters": 19
+}

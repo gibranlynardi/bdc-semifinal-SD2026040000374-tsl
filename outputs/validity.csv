@@ -1,0 +1,14 @@
+key,features,method,source,n_clusters,noise_frac,largest_frac,sil,db,ch,stab_sub_ari,stab_sub_sd,n_sub,stab_seed_ari,stab_seed_sd,n_seed_labellings,eligible,rank_stability,within_tie_margin,chosen
+raw__KMeans_k10,raw,KMeans k=10,computed,10,0.000000,0.202661,0.199586,2.740714,151.084668,0.899207,0.052863,20,0.929823,0.051482,6,True,2,True,False
+raw__KMeans_k20,raw,KMeans k=20,computed,20,0.000000,0.073745,0.207802,2.966056,105.752303,0.836318,0.046304,20,0.822980,0.038848,6,True,4,False,False
+raw__Leiden_r0.5,raw,Leiden r=0.5,computed,17,0.000000,0.104796,0.212105,2.430942,107.687916,0.889614,0.028141,20,0.950087,0.015658,6,True,3,False,False
+raw__Leiden_r1.0,raw,Leiden r=1.0,computed,19,0.000000,0.106460,0.212590,2.421994,102.309933,0.901732,0.038054,20,0.947703,0.022551,6,True,1,True,True
+raw__UMAP_HDBSCAN,raw,UMAP+HDBSCAN,computed,51,0.092875,0.100638,0.174488,2.435787,47.388356,0.770516,0.198291,20,0.739623,0.203546,6,True,5,False,False
+defl20__KMeans_k10,defl20,KMeans k=10,computed,10,0.000000,0.142501,0.019019,6.668962,19.191653,0.196421,0.037004,20,0.220897,0.028641,6,True,10,False,False
+defl20__KMeans_k20,defl20,KMeans k=20,computed,20,0.000000,0.083726,0.025052,5.571274,14.477931,0.190634,0.020103,20,0.212448,0.020684,6,True,11,False,False
+defl20__Leiden_r0.5,defl20,Leiden r=0.5,computed,13,0.000000,0.169116,-0.016464,13.756466,5.724643,0.707677,0.063867,20,0.910519,0.032802,6,True,7,False,False
+defl20__Leiden_r1.0,defl20,Leiden r=1.0,computed,24,0.000000,0.092043,-0.010264,8.871771,7.363785,0.710572,0.045969,20,0.891225,0.026512,6,True,6,False,False
+defl20__UMAP_HDBSCAN,defl20,UMAP+HDBSCAN,computed,78,0.256169,0.065151,0.073402,3.832856,7.845713,0.365736,0.051731,20,0.614703,0.039983,6,True,9,False,False
+raw__TEMI_K10,raw,TEMI K=10,"recorded (original TEMI run, not re-fitted)",10,0.000000,0.140837,0.168694,2.962645,124.393514,0.531743,,3,0.481372,,16,True,8,False,False
+raw__TEMI_K20,raw,TEMI K=20,"recorded (original TEMI run, not re-fitted)",20,0.000000,0.096756,0.190123,3.046731,94.243322,,,0,0.702609,,16,False,,False,False
+defl20__TEMI_K10,defl20,TEMI K=10,"recorded (original TEMI run, not re-fitted)",10,0.000000,0.182423,0.004073,8.693506,11.574251,,,0,0.093575,,16,False,,False,False

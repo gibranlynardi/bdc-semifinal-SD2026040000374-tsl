@@ -1,0 +1,24 @@
+1. chosen labelling vs reference: ARI = 1.000000, identical = True, n = 3607, clusters = 19 vs 19
+   contingency: 19 non-zero cells, diagonal holds 3607 of 3607 photos
+2. label-free choice: pipeline raw__Leiden_r1.0, original raw__Leiden_r1.0, same = True
+3. validity vs original internal.csv on 10 computed candidates: max |diff| = 4.96e-07 (csv keeps 6 decimals), equal = True
+   raw__KMeans_k10        max |diff| 4.92e-07
+   raw__KMeans_k20        max |diff| 4.95e-07
+   raw__Leiden_r0.5       max |diff| 4.06e-07
+   raw__Leiden_r1.0       max |diff| 4.15e-07
+   raw__UMAP_HDBSCAN      max |diff| 4.72e-07
+   defl20__KMeans_k10     max |diff| 4.96e-07
+   defl20__KMeans_k20     max |diff| 4.83e-07
+   defl20__Leiden_r0.5    max |diff| 4.16e-07
+   defl20__Leiden_r1.0    max |diff| 4.53e-07
+   defl20__UMAP_HDBSCAN   max |diff| 4.94e-07
+4. kNN name vote on 1275 scraped photos: same names = True, max |conf diff| = 3.3e-07
+5. FA2 positions: max |diff| = 5.0e-07 (csv keeps 6 decimals)
+6. refit stability vs original split_stability.py: max |diff| groups 0.000, pairs 0.00
+
+PASS  1 labels identical
+PASS  2 same choice
+PASS  3 validity equal
+PASS  4 name vote equal
+PASS  5 layout equal
+PASS  6 stability equal

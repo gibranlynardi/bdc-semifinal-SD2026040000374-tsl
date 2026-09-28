@@ -1,0 +1,33 @@
+19:49:01  Kategori Kriptik pipeline, profile=full, config=config.yaml
+19:49:01  versions: python=3.11.15, platform=Linux-6.18.44-fc-v37-x86_64-with-glibc2.39, numpy=2.4.4, pandas=2.3.3, scipy=1.17.1, scikit-learn=1.8.0, scanpy=1.11.5, anndata=0.12.19, igraph=1.0.0, leidenalg=0.12.0, umap-learn=0.5.12, pynndescent=0.6.0, numba=0.67.0, fa2-modified=0.4, PyYAML=6.0.3, tabulate=0.10.0, OMP_NUM_THREADS=1, OPENBLAS_NUM_THREADS=1, MKL_NUM_THREADS=1, NUMBA_NUM_THREADS=1
+19:49:01  input embeddings: /mnt/user-data/uploads/SD/work/results_embedding_2/emb_full_A144.npy sha256=9efcdce5c09091b70dc14518c501b72f42d19c00e3ad25a7e45d3b84c236dee8
+19:49:01  input index: /mnt/user-data/uploads/SD/work/results_embedding_2/emb_full_index.csv sha256=65fa1dacfc662ff59416f13ea79a63be13161aaadca99dbabcf88b13fddb3f9c
+19:49:02  [time] 1_data: 0.3 s
+19:49:02  rows kept: 3607 (catalogue 2332, scraped 1275)
+19:49:37  raw__KMeans_k10        k= 10 sil=0.200 resample ARI=0.899 seed ARI=0.930 (35 s)
+19:50:24  raw__KMeans_k20        k= 20 sil=0.208 resample ARI=0.836 seed ARI=0.823 (47 s)
+19:50:46  raw__Leiden_r0.5       k= 17 sil=0.212 resample ARI=0.890 seed ARI=0.950 (22 s)
+19:50:54  raw__Leiden_r1.0       k= 19 sil=0.213 resample ARI=0.902 seed ARI=0.948 (8 s)
+19:58:51  raw__UMAP_HDBSCAN      k= 51 sil=0.174 resample ARI=0.771 seed ARI=0.740 (477 s)
+19:59:57  defl20__KMeans_k10     k= 10 sil=0.019 resample ARI=0.196 seed ARI=0.221 (66 s)
+20:01:04  defl20__KMeans_k20     k= 20 sil=0.025 resample ARI=0.191 seed ARI=0.212 (66 s)
+20:01:12  defl20__Leiden_r0.5    k= 13 sil=-0.016 resample ARI=0.708 seed ARI=0.911 (8 s)
+20:01:21  defl20__Leiden_r1.0    k= 24 sil=-0.010 resample ARI=0.711 seed ARI=0.891 (8 s)
+20:09:11  defl20__UMAP_HDBSCAN   k= 78 sil=0.073 resample ARI=0.366 seed ARI=0.615 (471 s)
+20:09:11  [time] 2_candidates: 1209.6 s
+20:09:11  [time] 3_selection: 0.0 s
+20:09:11  label-free choice: raw__Leiden_r1.0
+20:09:11  [time] 4_audit: 0.3 s
+20:09:11  orphans (confident majority name < 50% of the cluster): [0, 17]
+20:09:11  names split over >= 2 clusters (catalogue view): ['Television', 'Washing_Machine', 'battery']
+20:10:37  [time] 5_export: 85.7 s
+20:10:37  FA2 layout: recomputed
+20:10:37  output clusters.csv: sha256=1155f59e908e1c2b527b15449677a6902050fe6fa52811f713abf8323ad4784a
+20:10:37  output validity.csv: sha256=00e8b806e3e4921361279b5d5cf33f567b225fb9378d8258a5a146c022909f85
+20:10:37  output choice.md: sha256=e6d09d45b123e35f5a43a50853d3c55ba1ac5c9d676e48ffa031edcc9700042e
+20:10:37  output crosstab_catalogue.csv: sha256=42147544341f4682313021f6627e3caddf68a59a026280412052b7910bd835e3
+20:10:37  output split_scores.csv: sha256=40c44e8ef1631c14d41ba5042862ca309c969b8b92584eab8ab78f49532bd5da
+20:10:37  output orphans.csv: sha256=0b44353e8a51fe5895664c1bf8e7623dd952ab33f090ee7f050f704b9f0783bf
+20:10:37  output stability.csv: sha256=2e228ae5e2d5e1ff15e57f57ebbfca5d97ec10200f509f77d64a7bba89b8704c
+20:10:37  output stability_pairs.csv: sha256=d916efb1e4b780b26bbca365db7cc321c334c44e9896a8f27e18a5472ff43847
+20:10:37  [time] total: 1296.0 s

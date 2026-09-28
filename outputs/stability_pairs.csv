@@ -1,0 +1,4 @@
+pair,cluster_a,cluster_b,frac_refits_apart,n_refits
+CRT 6 vs flat TV 12,6,12,1.000000,25
+small batt 8 vs aki 18,8,18,0.920000,25
+smartphone 3 vs feature phone 16,3,16,1.000000,25

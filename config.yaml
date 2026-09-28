@@ -1,0 +1,119 @@
+# Hidden-stratification audit: label-free clustering of frozen DINOv3 embeddings (BDC Satria Data 2026).
+# Every path under `paths` except `outputs` and `reference` is relative to the project root `SD/`.
+# The root is resolved in this order: --root CLI flag, SD_ROOT environment variable, `paths.root` below
+# (a relative `paths.root` is resolved against the folder that contains this file, so the default
+# assumes the package sits at SD/pipeline/).
+
+paths:
+  root: ..
+  embeddings: work/results_embedding_2/emb_full_A144.npy   # 26,527 x 768 float16, DINOv3 ViT-B/16 @144 px
+  index: work/results_embedding_2/emb_full_index.csv        # one row per embedding row
+  outputs: outputs                                          # relative to this package folder
+  reference: reference                                      # original-run artefacts, used by verify.py only
+
+data:
+  class_name: 1_Electronic      # the E-waste class analysed
+  keep_column: keep             # 1 = kept after perceptual-hash de-duplication
+  expected_rows: 3607
+
+# Feature variants used by the candidate configurations (both are label-free).
+# raw    = mean-centred, L2-normalised embeddings (base.deflate(E, 0))
+# defl20 = the top-20 principal components projected out first, then L2 (base.deflate(E, 20))
+features:
+  raw: 0
+  defl20: 20
+pca_random_state: 0
+
+graph:                          # scanpy kNN graph used by Leiden
+  n_neighbors: 15
+  metric: cosine
+  random_state: 0
+
+leiden:
+  flavor: igraph
+  n_iterations: 2
+  directed: false
+
+kmeans:
+  n_init: 10
+
+umap_hdbscan:                   # BERTopic-style default, only in the "full" profile
+  n_neighbors: 15
+  n_components: 10
+  min_dist: 0.0
+  metric: cosine
+  min_cluster_size: 10
+  cluster_selection_method: eom
+
+stability:
+  base_seed: 0                  # seed of the reported labelling
+  extra_seeds: [1, 2, 3, 4, 5]  # seed stability: 6 labellings in total
+  n_subsamples: 20              # resampling stability: 20 subsamples of 80%
+  fraction: 0.8
+  rng_seed: 12345               # numpy default_rng seed that draws the subsamples
+
+selection:                      # label-free rule, fixed before any evaluation
+  min_clusters: 10
+  tie_margin: 0.01              # within 0.01 of the best resampling ARI -> prefer higher cosine silhouette
+  expected_choice: raw__Leiden_r1.0   # what the original run chose (checked by verify.py only)
+
+# Candidate configurations of the label-free choice (the same 13 rows as the original internal.csv).
+# profile: quick = run in both profiles, full = only with --profile full (slow), recorded = not re-fitted here.
+profile: full
+candidates:
+  - {key: raw__KMeans_k10,      features: raw,    method: kmeans,       k: 10,           profile: quick}
+  - {key: raw__KMeans_k20,      features: raw,    method: kmeans,       k: 20,           profile: quick}
+  - {key: raw__Leiden_r0.5,     features: raw,    method: leiden,       resolution: 0.5, profile: quick}
+  - {key: raw__Leiden_r1.0,     features: raw,    method: leiden,       resolution: 1.0, profile: quick}
+  - {key: raw__UMAP_HDBSCAN,    features: raw,    method: umap_hdbscan,                  profile: full}
+  - {key: defl20__KMeans_k10,   features: defl20, method: kmeans,       k: 10,           profile: full}
+  - {key: defl20__KMeans_k20,   features: defl20, method: kmeans,       k: 20,           profile: full}
+  - {key: defl20__Leiden_r0.5,  features: defl20, method: leiden,       resolution: 0.5, profile: quick}
+  - {key: defl20__Leiden_r1.0,  features: defl20, method: leiden,       resolution: 1.0, profile: quick}
+  - {key: defl20__UMAP_HDBSCAN, features: defl20, method: umap_hdbscan,                  profile: full}
+
+# TEMI (Adaloglou et al., BMVC 2023) was fitted by a separate torch script in the original run.
+# It is not re-fitted here. Its label-free numbers are copied from the original internal.csv so that the
+# selection table is complete. TEMI resampling used a reduced protocol (3 subsamples); K=20 and defl20 have none,
+# so under the rule those rows are not eligible. TEMI seed stability is over its 16 heads.
+recorded:
+  - {key: raw__TEMI_K10,    features: raw,    method: TEMI K=10, n_clusters: 10, largest_frac: 0.140837, sil: 0.168694, db: 2.962645, ch: 124.393514, stab_sub_ari: 0.531743, n_sub: 3, stab_seed_ari: 0.481372, n_seed_labellings: 16}
+  - {key: raw__TEMI_K20,    features: raw,    method: TEMI K=20, n_clusters: 20, largest_frac: 0.096756, sil: 0.190123, db: 3.046731, ch: 94.243322,  stab_sub_ari: null,     n_sub: 0, stab_seed_ari: 0.702609, n_seed_labellings: 16}
+  - {key: defl20__TEMI_K10, features: defl20, method: TEMI K=10, n_clusters: 10, largest_frac: 0.182423, sil: 0.004073, db: 8.693506, ch: 11.574251,  stab_sub_ari: null,     n_sub: 0, stab_seed_ari: 0.093575, n_seed_labellings: 16}
+
+# Post-hoc audit. It reads filename names (catalogue photos only) AFTER the choice is made.
+# Human annotation labels are not read anywhere in this package.
+audit:
+  name_column: device_label     # filename name, present for catalogue photos only
+  name_knn_k: 15                # kNN vote (cosine, uncentred L2 embeddings) catalogue -> scraped
+  confident_conf: 0.6           # a scraped photo gets a "confident name" when >= 60% of its 15 neighbours agree
+  split_min_share: 0.10         # a cluster counts as a part of a name when it holds >= 10% of that name
+  orphan_max_share: 0.50        # orphan: the confident majority name covers < 50% of the cluster
+  hold_share: 0.60              # refit stability: a group "holds" when >= 60% of it lands in one refit cluster
+  # Reference groups named in the paper after inspecting medoids (cluster id -> short name).
+  groups:
+    "CRT 6": 6
+    "flat TV 12": 12
+    "small batt 8": 8
+    "aki 18": 18
+    "smartphone 3": 3
+    "feature phone 16": 16
+    "laptop 2": 2
+    "laptop 4": 4
+    "sockets 17": 17
+    "heaps 0": 0
+  pairs:
+    - ["CRT 6", "flat TV 12"]
+    - ["small batt 8", "aki 18"]
+    - ["smartphone 3", "feature phone 16"]
+
+layout:                         # ForceAtlas2 layout of the raw kNN graph, exported for the figures
+  source: recompute             # recompute (about 90 s) or reference (reads reference/pos_raw.npy)
+  n_neighbors: 15
+  metric: cosine
+  neighbors_random_state: 42
+  fa_random_state: 0
+  maxiter: 1500
+
+output:
+  float_format: "%.6f"
